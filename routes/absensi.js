@@ -22,6 +22,7 @@ router.post("/checkin", async (req, res) => {
     metadata: "checkin berhasil",
   });
 });
+
 router.post("/checkout", async (req, res) => {
   const { nip } = req.body;
   const absensi = await AbsensiModel.create({
