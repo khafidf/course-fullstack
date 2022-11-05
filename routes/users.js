@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   const users = await UsersModel.findAll();
   res.status(200).json({
     data: users,
-    metadata: "testing get",
+    metadata: "testing endpoint user",
   });
 });
 
@@ -32,11 +32,11 @@ router.post("/", async (req, res) => {
 router.put("/", async (req, res) => {
   const { nip, nama, password, newPassword } = req.body;
 
-  const compare = await passwordCheck(nip, password);
+  const check = await passwordCheck(nip, password);
 
   const encryptedPassword = await bcrypt.hash(newPassword, 10);
 
-  if (compare === true) {
+  if (check.compare === true) {
     const users = await UsersModel.update(
       {
         nama,
