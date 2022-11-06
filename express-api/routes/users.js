@@ -8,8 +8,8 @@ const passwordCheck = require("../utils/passwordCheck");
 router.get("/", async (req, res) => {
   const users = await UsersModel.findAll();
   res.status(200).json({
-    data: users,
-    metadata: "testing endpoint user",
+    registered: users,
+    metadata: "testing endpoint user"
   });
 });
 
@@ -24,8 +24,8 @@ router.post("/", async (req, res) => {
     password: encryptedPassword,
   });
   res.status(200).json({
-    data: users,
-    metadata: "testing post",
+    registered: users,
+    metadata: "testing post"
   });
 });
 
@@ -50,7 +50,7 @@ router.put("/", async (req, res) => {
     });
   } else {
     res.status(400).json({
-      error: "data invalid",
+      error: "data invalid"
     });
   }
 });
@@ -58,16 +58,18 @@ router.put("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { nip, password } = req.body;
 
-  const check = await passwordCheck(nip, password);
+  try {
+    const check = await passwordCheck(nip, password);
 
-  if (check.compare === true) {
-    res.status(200).json({
-      users: check.userData,
-      metadata: "login berhasil",
-    });
-  } else {
+    if (check.compare === true) {
+      res.status(200).json({
+        users: check.userData,
+        metadata: "login berhasil"
+      });
+    }
+  } catch (e) {
     res.status(400).json({
-      error: "data invalid",
+      error: "data invalid"
     });
   }
 });
