@@ -9,46 +9,54 @@ router.get("/", async (req, res) => {
   const users = await UsersModel.findAll();
   res.status(200).json({
     registered: users,
-    metadata: "testing endpoint user"
+    metadata: "endpoint user"
   });
 });
 
 router.post("/", async (req, res) => {
   const { nip, nama, password } = req.body;
 
-  const encryptedPassword = await bcrypt.hash(password, 10);
+  try {
+    const encryptedPassword = await bcrypt.hash(password, 10);
 
-  const users = await UsersModel.create({
-    nip,
-    nama,
-    password: encryptedPassword,
-  });
-  res.status(200).json({
-    registered: users,
-    metadata: "testing post"
-  });
+    const users = await UsersModel.create({
+      nip,
+      nama,
+      password: encryptedPassword,
+    });
+    res.status(200).json({
+      registered: users,
+      metadata: "register berhasil"
+    });
+  } catch (error) {
+    res.status(400).json({
+      error: "data invalid"
+    });
+  }
 });
 
 router.put("/", async (req, res) => {
   const { nip, nama, password, newPassword } = req.body;
 
-  const check = await passwordCheck(nip, password);
+  try {
+    const check = await passwordCheck(nip, password);
 
-  const encryptedPassword = await bcrypt.hash(newPassword, 10);
+    const encryptedPassword = await bcrypt.hash(newPassword, 10);
 
-  if (check.compare === true) {
-    const users = await UsersModel.update(
-      {
-        nama,
-        password: encryptedPassword,
-      },
-      { where: { nip: nip } }
-    );
-    res.status(200).json({
-      users: { updated: users[0] },
-      metadata: "User updated....",
-    });
-  } else {
+    if (check.compare === true) {
+      const users = await UsersModel.update(
+        {
+          nama,
+          password: encryptedPassword,
+        },
+        { where: { nip: nip } }
+      );
+      res.status(200).json({
+        users: { updated: users[0] },
+        metadata: "User updated....",
+      });
+    }
+  } catch (error) {
     res.status(400).json({
       error: "data invalid"
     });
@@ -67,7 +75,7 @@ router.post("/login", async (req, res) => {
         metadata: "login berhasil"
       });
     }
-  } catch (e) {
+  } catch (error) {
     res.status(400).json({
       error: "data invalid"
     });

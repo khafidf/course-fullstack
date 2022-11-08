@@ -13,16 +13,16 @@ function App() {
         <Route
           path="/register"
           element={
-            <Register title="REGISTER PAGE" description="ABSENSI SEDERHANA" />
+            <Register />
           }
         />
         <Route
           path="/login"
-          element={<Login title="LOGIN PAGE" description="ABSENSI SEDERHANA" />}
+          element={<Login />}
         />
         <Route
           path="/dashboard"
-          element={<Dashboard title="LIST ABSENSI" />}
+          element={<Dashboard title="ATTENDANCE LIST" />}
         />
         <Route
           path="*"

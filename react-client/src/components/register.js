@@ -1,13 +1,17 @@
-import ReactTypingEffect from "react-typing-effect";
-import { Container, Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Navigation from "./dashboard/navbar";
 
-const Register = ({ title, description }) => {
+const Register = () => {
   const [NIP, setNIP] = useState("");
   const [nama, setNama] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("nama") && localStorage.getItem("nip")) {
+      window.location.replace("/dashboard");
+    };
+  }, []);
 
   const handleNIP = (inputNIP) => {
     setNIP(inputNIP);
@@ -20,8 +24,6 @@ const Register = ({ title, description }) => {
   };
 
   const userRegister = () => {
-    console.log("register ready");
-
     // data sesuai nama di be
     const requestingData = {
       nip: NIP,
@@ -34,7 +36,6 @@ const Register = ({ title, description }) => {
       url: "http://localhost:3001/users",
       data: requestingData,
     }).then((result) => {
-      console.log(result.data);
       if (result.data.registered) {
         alert("Pendaftaran berhasil");
         window.location.replace("/login");
@@ -45,51 +46,105 @@ const Register = ({ title, description }) => {
   };
 
   return (
-    <Container>
+    // <Container>
+    //   <Navigation />
+    //   <div className="d-flex justify-content-center fw-bold h3 my-4">
+    //     <ReactTypingEffect
+    //       text={[title, description]}
+    //       speed={200}
+    //       eraseDelay={800}
+    //       eraseSpeed={100}
+    //       typingDelay={100}
+    //     />
+    //   </div>
+    //   <Form className="w-50 mx-auto">
+    //     <Form.Group>
+    //       <Form.Label className="fw-bold">NIP</Form.Label>
+    //       <Form.Control
+    //         type="number"
+    //         placeholder="Masukkan NIP Anda"
+    //         required
+    //         onChange={(event) => handleNIP(event.target.value)}
+    //       />
+    //     </Form.Group>
+    //     <Form.Group>
+    //       <Form.Label className="fw-bold">Nama</Form.Label>
+    //       <Form.Control
+    //         type="text"
+    //         placeholder="Masukkan Nama Anda"
+    //         required
+    //         onChange={(event) => handleNama(event.target.value)}
+    //       />
+    //     </Form.Group>
+    //     <Form.Group>
+    //       <Form.Label className="fw-bold">Password</Form.Label>
+    //       <Form.Control
+    //         type="password"
+    //         placeholder="******"
+    //         required
+    //         onChange={(event) => handlePassword(event.target.value)}
+    //       />
+    //     </Form.Group>
+    //     <p className="mt-2">Have an account? <a href="/login" className="text-primary text-decoration-none">Log in</a></p>
+    //     <Button className="w-100" onClick={() => userRegister()}>
+    //       Daftar Sekarang
+    //     </Button>
+    //   </Form>
+    // </Container>
+    <div>
       <Navigation />
-      <div className="d-flex justify-content-center fw-bold h3 my-4">
-        <ReactTypingEffect
-          text={[title, description]}
-          speed={200}
-          eraseDelay={800}
-          eraseSpeed={100}
-          typingDelay={100}
-        />
+      <div className="bg-primary" style={{ height: "100vh" }}>
+        <div className="container h-100">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div className="card text-dark" style={{ borderRadius: "1rem", backgroundColor: "#caf0f8" }}>
+                <div className="card-body py-3 px-5 text-center">
+                  <div className="mb-md-4 mt-md-4">
+                    <h2 className="fw-bold mb-2 text-uppercase">Register</h2>
+                    <p className="text-dark-50 mb-5">Please enter your NIP, name, and password!</p>
+                    <div className="form-outline form-white mb-4">
+                      <input
+                        type="number"
+                        className="form-control form-control-lg"
+                        placeholder="Enter your NIP"
+                        required
+                        onChange={(event) => handleNIP(event.target.value)}
+                      />
+                      <label className="form-label mt-1">NIP</label>
+                    </div>
+                    <div className="form-outline form-white mb-4">
+                      <input
+                        type="text"
+                        className="form-control form-control-lg"
+                        placeholder="Enter your name"
+                        required
+                        onChange={(event) => handleNama(event.target.value)}
+                      />
+                      <label className="form-label mt-1">Name</label>
+                    </div>
+                    <div className="form-outline form-white mb-4">
+                      <input
+                        type="password"
+                        className="form-control form-control-lg"
+                        placeholder="******"
+                        required
+                        onChange={(event) => handlePassword(event.target.value)}
+                      />
+                      <label className="form-label mt-1">Password</label>
+                    </div>
+                    <button className="btn btn-primary btn-lg px-5" onClick={() => userRegister()}>Login</button>
+                  </div>
+                  <div>
+                    <p className="mb-0">Have an account? <a href="/login" className="text-primary-50 fw-bold text-decoration-none">Login</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <Form className="w-50 mx-auto">
-        <Form.Group>
-          <Form.Label className="fw-bold">NIP</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Masukkan NIP Anda"
-            required
-            onChange={(event) => handleNIP(event.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label className="fw-bold">Nama</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Masukkan Nama Anda"
-            required
-            onChange={(event) => handleNama(event.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label className="fw-bold">Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="******"
-            required
-            onChange={(event) => handlePassword(event.target.value)}
-          />
-        </Form.Group>
-        <p className="mt-2">Have an account? <a href="/login" className="text-primary text-decoration-none">Log in</a></p>
-        <Button className="w-100" onClick={() => userRegister()}>
-          Daftar Sekarang
-        </Button>
-      </Form>
-    </Container>
+    </div>
   );
 };
 

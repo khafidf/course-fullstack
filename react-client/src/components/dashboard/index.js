@@ -44,7 +44,7 @@ const Dashboard = ({ title }) => {
                 <Badge
                   pill
                   bg="primary"
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", opacity: "75%" }}
                   onClick={() => absen("checkin")}
                 >
                   Checkin
@@ -54,7 +54,7 @@ const Dashboard = ({ title }) => {
                 <Badge
                   pill
                   bg="danger"
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", opacity: "75%" }}
                   onClick={() => absen("checkout")}
                 >
                   Checkout
@@ -63,20 +63,20 @@ const Dashboard = ({ title }) => {
             </div>
           </div>
         )}
-        <div className="table-responsive">
+        <div className="table-responsive rounded-top">
           <table className="table table-hover table-sm text-center" style={{ cursor: "pointer" }}>
-            <thead className="table-dark">
+            <thead className="table" style={{ backgroundColor: "#caf0f8" }}>
               {(localStorage.getItem("nama") == "admin") ? (
                 <tr>
                   <th scope="col">no</th>
                   <th scope="col">NIP</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Date</th>
                 </tr>
               ) : (
                 <tr>
                   <th scope="col">Status</th>
-                  <th scope="col">Tanggal</th>
+                  <th scope="col">Date</th>
                 </tr>
               )}
             </thead>
@@ -90,7 +90,7 @@ const Dashboard = ({ title }) => {
                       <td>{i + 1}</td>
                       <td>{users_nip}</td>
                       <td>{status}</td>
-                      <td>{date.toLocaleDateString(["ban", "id"])}</td>
+                      <td>{date.toLocaleString(["ban", "id"])}</td>
                     </tr>
                   ) : (
                     (users_nip == localStorage.getItem("nip")) ? (

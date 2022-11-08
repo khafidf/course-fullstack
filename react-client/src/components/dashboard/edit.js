@@ -49,7 +49,7 @@ const Edit = () => {
         Silahkan masukkan password lama anda. Anda diharuskan melakukana login
         ulang setelah mengubah password
       </Form.Text>
-      <Button className="w-100 mt-2" onClick={() => updateProfile()}>
+      <Button className="btn-lg px-5 w-100 mt-2" onClick={() => updateProfile()}>
         Update Profile
       </Button>
     </Form>

@@ -9,7 +9,7 @@ const Navigation = () => {
 
   const name = localStorage.getItem("nama");
   return (
-    <Navbar>
+    <Navbar className="py-0">
       {(window.location.pathname == "/register" || window.location.pathname == "/login") ? (
         <Container className="py-2">
           <Navbar.Brand href="/" className="fw-bold fs-4"><span className="text-primary">D</span>'Attendance</Navbar.Brand>
@@ -19,7 +19,7 @@ const Navigation = () => {
           <Container className="py-2">
             <Navbar.Brand href="/dashboard" className="fw-bold fs-4"><span className="text-primary">D</span>'Attendance</Navbar.Brand>
             <Dropdown>
-              <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+              <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
                 {name.charAt(0).toUpperCase() + name.slice(1)}
               </Dropdown.Toggle>
 
@@ -39,8 +39,8 @@ const Navigation = () => {
           <Container className="py-2">
             <Navbar.Brand href="/" className="fw-bold fs-4"><span className="text-primary">D</span>'Attendance</Navbar.Brand>
             <Nav>
-              <Nav.Link href="/login" className="fs-5">Login</Nav.Link>
-              <Nav.Link href="/register" className="fs-5">Register</Nav.Link>
+              <Nav.Link href="/login" className="fs-6">Login</Nav.Link>
+              <Nav.Link href="/register" className="fs-6">Register</Nav.Link>
             </Nav>
           </Container>
         )
