@@ -1,26 +1,52 @@
-const Navbar = () => {
+import { Button, Container, Nav, Navbar, Dropdown } from "react-bootstrap";
+import { logout } from "./logout";
+import { useState } from "react";
+import CenterModal from "../utils/modal";
+import Edit from "./edit";
+
+const Navigation = () => {
+  const [modalShow, setModalShow] = useState(false);
+
+  const name = localStorage.getItem("nama");
   return (
-    <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 className="h2">{localStorage.getItem("nama")}</h1>
-      <div className="btn-toolbar mb-2 mb-md-0">
-        <div className="btn-group me-2">
-          <button type="button" className="btn btn-sm btn-outline-secondary">
-            Share
-          </button>
-          <button type="button" className="btn btn-sm btn-outline-secondary">
-            Export
-          </button>
-        </div>
-        <button
-          type="button"
-          className="btn btn-sm btn-outline-secondary dropdown-toggle"
-        >
-          <span data-feather="calendar" className="align-text-bottom"></span>
-          This week
-        </button>
-      </div>
-    </div>
+    <Navbar>
+      {(window.location.pathname == "/register" || window.location.pathname == "/login") ? (
+        <Container className="py-2">
+          <Navbar.Brand href="/" className="fw-bold fs-4"><span className="text-primary">D</span>'Attendance</Navbar.Brand>
+        </Container>
+      ) : (
+        (localStorage.getItem("nama") && localStorage.getItem("nip")) ? (
+          <Container className="py-2">
+            <Navbar.Brand href="/dashboard" className="fw-bold fs-4"><span className="text-primary">D</span>'Attendance</Navbar.Brand>
+            <Dropdown>
+              <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                {name.charAt(0).toUpperCase() + name.slice(1)}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => setModalShow(true)}>Edit Profile</Dropdown.Item>
+                <Dropdown.Item onClick={() => logout("/")}>Log out</Dropdown.Item>
+                <CenterModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                  title={<h3>Edit Profile</h3>}
+                  page={<Edit />}
+                />
+              </Dropdown.Menu>
+            </Dropdown>
+          </Container>
+        ) : (
+          <Container className="py-2">
+            <Navbar.Brand href="/" className="fw-bold fs-4"><span className="text-primary">D</span>'Attendance</Navbar.Brand>
+            <Nav>
+              <Nav.Link href="/login" className="fs-5">Login</Nav.Link>
+              <Nav.Link href="/register" className="fs-5">Register</Nav.Link>
+            </Nav>
+          </Container>
+        )
+      )}
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default Navigation;

@@ -1,4 +1,4 @@
-export const logout = () => {
+export const logout = (params) => {
   localStorage.clear();
-  window.location.reload();
+  window.location.replace(params);
 };

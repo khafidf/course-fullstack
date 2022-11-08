@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { Container, Button, Badge } from "react-bootstrap";
+import { Container, Badge } from "react-bootstrap";
 import axios from "axios";
-import Navbar from "./navbar";
-import Edit from "./edit";
-import { logout } from "./logout";
+import Navigation from "./navbar";
 
 const Dashboard = ({ title }) => {
   const [absensiList, setAbsensiList] = useState([]);
@@ -11,7 +9,6 @@ const Dashboard = ({ title }) => {
 
   useEffect(() => {
     if (!localStorage.getItem("nama") && !localStorage.getItem("nip")) {
-      console.log("user belum login");
       window.location.replace("/login");
     }
     axios({
@@ -21,7 +18,6 @@ const Dashboard = ({ title }) => {
   }, [absenNotif]);
 
   const absen = (params) => {
-    console.log(params);
     const requestingData = {
       nip: localStorage.getItem("nip"),
     };
@@ -37,62 +33,82 @@ const Dashboard = ({ title }) => {
   return (
     <Container>
       <main className="col-md-12 ms-sm-auto col-lg-12 px-md-4">
-        <Navbar />
-        <h2>{title}</h2>
-        <div>
-          <p>Hello {localStorage.getItem("nama")}!</p>
-          <p>NIP {localStorage.getItem("nip")} </p>
-          <Button variant="danger" className="mb-2" onClick={() => logout()}>
-            Logout
-          </Button>
-          <Edit title="Edit Profile" />
-        </div>
+        <Navigation />
+        {(localStorage.getItem("nama") == "admin") ? (
+          <h4>{title}</h4>
+        ) : (
+          <div className="d-flex justify-content-between align-items-center my-4">
+            <h4>{title}</h4>
+            <div className="d-flex gap-2">
+              <h5>
+                <Badge
+                  pill
+                  bg="primary"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => absen("checkin")}
+                >
+                  Checkin
+                </Badge>
+              </h5>
+              <h5>
+                <Badge
+                  pill
+                  bg="danger"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => absen("checkout")}
+                >
+                  Checkout
+                </Badge>
+              </h5>
+            </div>
+          </div>
+        )}
         <div className="table-responsive">
-          <table className="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th scope="col">no.</th>
-                <th scope="col">NIP</th>
-                <th scope="col">Status</th>
-                <th scope="col">Tanggal</th>
-              </tr>
+          <table className="table table-hover table-sm text-center" style={{ cursor: "pointer" }}>
+            <thead className="table-dark">
+              {(localStorage.getItem("nama") == "admin") ? (
+                <tr>
+                  <th scope="col">no</th>
+                  <th scope="col">NIP</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Tanggal</th>
+                </tr>
+              ) : (
+                <tr>
+                  <th scope="col">Status</th>
+                  <th scope="col">Tanggal</th>
+                </tr>
+              )}
             </thead>
             <tbody>
               {absensiList.map((absensi, i) => {
                 const { users_nip, status, createdAt } = absensi;
                 const date = new Date(createdAt);
                 return (
-                  <tr key={i}>
-                    <td>{i + 1}</td>
-                    <td>{users_nip}</td>
-                    <td>{status}</td>
-                    <td>{date.toLocaleDateString(["ban", "id"])}</td>
-                  </tr>
-                );
+                  (localStorage.getItem("nama") == "admin") ? (
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td>{users_nip}</td>
+                      <td>{status}</td>
+                      <td>{date.toLocaleDateString(["ban", "id"])}</td>
+                    </tr>
+                  ) : (
+                    (users_nip == localStorage.getItem("nip")) ? (
+                      <tr key={i}>
+                        <td>{status}</td>
+                        <td>{date.toLocaleDateString(["ban", "id"])}</td>
+                      </tr>
+                    ) : (
+                      ""
+                    )
+                  )
+                )
               })}
             </tbody>
           </table>
         </div>
-        <div className="d-flex justify-content-center gap-1 mb-3">
-          <Badge
-            pill
-            bg="primary"
-            style={{ cursor: "pointer" }}
-            onClick={() => absen("checkin")}
-          >
-            Checkin
-          </Badge>
-          <Badge
-            pill
-            bg="danger"
-            style={{ cursor: "pointer" }}
-            onClick={() => absen("checkout")}
-          >
-            Checkout
-          </Badge>
-        </div>
       </main>
-    </Container>
+    </Container >
   );
 };
 

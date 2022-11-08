@@ -2,6 +2,7 @@ import ReactTypingEffect from "react-typing-effect";
 import { Container, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
+import Navigation from "./dashboard/navbar";
 
 const Register = ({ title, description }) => {
   const [NIP, setNIP] = useState("");
@@ -45,6 +46,7 @@ const Register = ({ title, description }) => {
 
   return (
     <Container>
+      <Navigation />
       <div className="d-flex justify-content-center fw-bold h3 my-4">
         <ReactTypingEffect
           text={[title, description]}
@@ -82,7 +84,8 @@ const Register = ({ title, description }) => {
             onChange={(event) => handlePassword(event.target.value)}
           />
         </Form.Group>
-        <Button className="mt-4 w-100" onClick={() => userRegister()}>
+        <p className="mt-2">Have an account? <a href="/login" className="text-primary text-decoration-none">Log in</a></p>
+        <Button className="w-100" onClick={() => userRegister()}>
           Daftar Sekarang
         </Button>
       </Form>

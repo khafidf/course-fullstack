@@ -3,12 +3,13 @@ import Login from "./components/login";
 import Home from "./components/home";
 import Dashboard from "./components/dashboard/";
 import Register from "./components/register";
+import Undefined from "./components/undefined";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home title="HOME" />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/register"
           element={
@@ -21,13 +22,11 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={<Dashboard title="Dashboard absensi" />}
+          element={<Dashboard title="LIST ABSENSI" />}
         />
         <Route
           path="*"
-          element={
-            <h1 className="d-flex justify-content-center">PAGE NOT FOUND</h1>
-          }
+          element={<Undefined />}
         />
       </Routes>
     </Router>
@@ -36,7 +35,6 @@ function App() {
 
 export default App;
 
-// bikin home semenarik mungkin
 // validasi invalid data supaya tidak mati (be)
 // bikin page not found
 // validasi input data dari fe
