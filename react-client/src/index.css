@@ -1,10 +1,29 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Helvetica;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.nav-hover {
+  font-family: Helvetica;
+  border-radius: 25px;
+}
+
+.nav-hover:hover {
+  background-color: #caf0f8;
+  color: black;
+  transition: all 0.3s ease-in-out;
+  font-family: Helvetica;
+}
+
+.button-hover {
+  opacity:  0.7;
+  cursor: pointer;
+}
+
+.button-hover:hover {
+  opacity: 1;
 }
 
 code {

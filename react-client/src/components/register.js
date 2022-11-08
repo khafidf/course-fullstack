@@ -46,51 +46,6 @@ const Register = () => {
   };
 
   return (
-    // <Container>
-    //   <Navigation />
-    //   <div className="d-flex justify-content-center fw-bold h3 my-4">
-    //     <ReactTypingEffect
-    //       text={[title, description]}
-    //       speed={200}
-    //       eraseDelay={800}
-    //       eraseSpeed={100}
-    //       typingDelay={100}
-    //     />
-    //   </div>
-    //   <Form className="w-50 mx-auto">
-    //     <Form.Group>
-    //       <Form.Label className="fw-bold">NIP</Form.Label>
-    //       <Form.Control
-    //         type="number"
-    //         placeholder="Masukkan NIP Anda"
-    //         required
-    //         onChange={(event) => handleNIP(event.target.value)}
-    //       />
-    //     </Form.Group>
-    //     <Form.Group>
-    //       <Form.Label className="fw-bold">Nama</Form.Label>
-    //       <Form.Control
-    //         type="text"
-    //         placeholder="Masukkan Nama Anda"
-    //         required
-    //         onChange={(event) => handleNama(event.target.value)}
-    //       />
-    //     </Form.Group>
-    //     <Form.Group>
-    //       <Form.Label className="fw-bold">Password</Form.Label>
-    //       <Form.Control
-    //         type="password"
-    //         placeholder="******"
-    //         required
-    //         onChange={(event) => handlePassword(event.target.value)}
-    //       />
-    //     </Form.Group>
-    //     <p className="mt-2">Have an account? <a href="/login" className="text-primary text-decoration-none">Log in</a></p>
-    //     <Button className="w-100" onClick={() => userRegister()}>
-    //       Daftar Sekarang
-    //     </Button>
-    //   </Form>
-    // </Container>
     <div>
       <Navigation />
       <div className="bg-primary" style={{ height: "100vh" }}>

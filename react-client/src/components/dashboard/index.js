@@ -14,20 +14,23 @@ const Dashboard = ({ title }) => {
     axios({
       method: "GET",
       url: "http://localhost:3001/absensi",
-    }).then((result) => setAbsensiList(result.data.absensi));
+    }).then((result) => {
+      setAbsensiList(result.data.absensi)
+    });
   }, [absenNotif]);
 
   const absen = (params) => {
     const requestingData = {
       nip: localStorage.getItem("nip"),
     };
+
     axios({
       method: "POST",
       url: `http://localhost:3001/absensi/${params}`,
-      data: requestingData,
+      data: requestingData
     }).then(() => {
-      setAbsenNotif(!absenNotif);
-    });
+      setAbsenNotif(!absenNotif)
+    })
   };
 
   return (
@@ -40,21 +43,19 @@ const Dashboard = ({ title }) => {
           <div className="d-flex justify-content-between align-items-center my-4">
             <h4>{title}</h4>
             <div className="d-flex gap-2">
-              <h5>
+              <h5 className="button-hover">
                 <Badge
                   pill
                   bg="primary"
-                  style={{ cursor: "pointer", opacity: "75%" }}
                   onClick={() => absen("checkin")}
                 >
                   Checkin
                 </Badge>
               </h5>
-              <h5>
+              <h5 className="button-hover">
                 <Badge
                   pill
                   bg="danger"
-                  style={{ cursor: "pointer", opacity: "75%" }}
                   onClick={() => absen("checkout")}
                 >
                   Checkout
@@ -96,7 +97,7 @@ const Dashboard = ({ title }) => {
                     (users_nip == localStorage.getItem("nip")) ? (
                       <tr key={i}>
                         <td>{status}</td>
-                        <td>{date.toLocaleDateString(["ban", "id"])}</td>
+                        <td>{date.toLocaleString(["ban", "id"])}</td>
                       </tr>
                     ) : (
                       ""

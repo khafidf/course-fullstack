@@ -39,8 +39,8 @@ const Navigation = () => {
           <Container className="py-2">
             <Navbar.Brand href="/" className="fw-bold fs-4"><span className="text-primary">D</span>'Attendance</Navbar.Brand>
             <Nav>
-              <Nav.Link href="/login" className="fs-6">Login</Nav.Link>
-              <Nav.Link href="/register" className="fs-6">Register</Nav.Link>
+              <Nav.Link href="/login" className="fs-6 nav-hover">Login</Nav.Link>
+              <Nav.Link href="/register" className="fs-6 nav-hover">Register</Nav.Link>
             </Nav>
           </Container>
         )

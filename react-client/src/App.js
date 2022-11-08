@@ -35,8 +35,4 @@ function App() {
 
 export default App;
 
-// validasi invalid data supaya tidak mati (be)
-// bikin page not found
-// validasi input data dari fe
-// validasi login (saat sudah login tidak bisa masuk login lagi)
 // validasi sistem absensi(sehari 1 org hanya bisa 1x ci & co)
