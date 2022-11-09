@@ -33,17 +33,18 @@ const Edit = () => {
       <Form.Group className="mb-2">
         <Form.Label>Nama</Form.Label>
         <Form.Control
-          onChange={(event) => setNama(event.target.value.toLowerCase())}
+          required
           defaultValue={name.charAt(0).toUpperCase() + name.slice(1)}
+          onChange={(event) => setNama(event.target.value.toLowerCase())}
         />
       </Form.Group>
       <Form.Group className="mb-2">
         <Form.Label>Password Baru</Form.Label>
-        <Form.Control onChange={(event) => setNewPassword(event.target.value)} />
+        <Form.Control required onChange={(event) => setNewPassword(event.target.value)} />
       </Form.Group>
       <Form.Group className="mb-2">
         <Form.Label>Password Lama</Form.Label>
-        <Form.Control onChange={(event) => setPassword(event.target.value)} />
+        <Form.Control required onChange={(event) => setPassword(event.target.value)} />
       </Form.Group>
       <Form.Text className="text-muted">
         Silahkan masukkan password lama anda. Anda diharuskan melakukana login
