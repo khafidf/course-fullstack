@@ -10,29 +10,16 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/register"
-          element={
-            <Register />
-          }
-        />
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route
           path="/dashboard"
           element={<Dashboard title="ATTENDANCE LIST" />}
         />
-        <Route
-          path="*"
-          element={<Undefined />}
-        />
+        <Route path="*" element={<Undefined />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-// validasi sistem absensi(sehari 1 org hanya bisa 1x ci & co)

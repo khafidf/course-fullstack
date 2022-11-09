@@ -7,7 +7,7 @@ User.init(
   {
     nip: {
       type: DataTypes.INTEGER,
-      unique: true
+      unique: true,
     },
     nama: {
       type: DataTypes.STRING,

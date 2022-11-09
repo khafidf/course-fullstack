@@ -10,15 +10,17 @@ const Register = () => {
   useEffect(() => {
     if (localStorage.getItem("nama") && localStorage.getItem("nip")) {
       window.location.replace("/dashboard");
-    };
+    }
   }, []);
 
   const handleNIP = (inputNIP) => {
     setNIP(inputNIP);
   };
+
   const handleNama = (inputNama) => {
     setNama(inputNama);
   };
+
   const handlePassword = (inputPassword) => {
     setPassword(inputPassword);
   };
@@ -52,11 +54,16 @@ const Register = () => {
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div className="card text-dark" style={{ borderRadius: "1rem", backgroundColor: "#caf0f8" }}>
+              <div
+                className="card text-dark"
+                style={{ borderRadius: "1rem", backgroundColor: "#caf0f8" }}
+              >
                 <div className="card-body py-3 px-5 text-center">
                   <div className="mb-md-4 mt-md-4">
                     <h2 className="fw-bold mb-2 text-uppercase">Register</h2>
-                    <p className="text-dark-50 mb-5">Please enter your NIP, name, and password!</p>
+                    <p className="text-dark-50 mb-5">
+                      Please enter your NIP, name, and password!
+                    </p>
                     <div className="form-outline form-white mb-4">
                       <input
                         type="number"
@@ -87,10 +94,22 @@ const Register = () => {
                       />
                       <label className="form-label mt-1">Password</label>
                     </div>
-                    <button className="btn btn-primary btn-lg px-5" onClick={() => userRegister()}>Login</button>
+                    <button
+                      className="btn btn-primary btn-lg px-5"
+                      onClick={() => userRegister()}
+                    >
+                      Login
+                    </button>
                   </div>
                   <div>
-                    <p className="mb-0">Have an account? <a href="/login" className="text-primary-50 fw-bold text-decoration-none">Login</a>
+                    <p className="mb-0">
+                      Have an account?{" "}
+                      <a
+                        href="/login"
+                        className="text-primary-50 fw-bold text-decoration-none"
+                      >
+                        Login
+                      </a>
                     </p>
                   </div>
                 </div>

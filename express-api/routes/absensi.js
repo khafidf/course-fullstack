@@ -22,7 +22,7 @@ router.post("/checkin", async (req, res) => {
       if (check.currentDate !== check.newDate) {
         const absensi = await AbsensiModel.create({
           users_nip: nip,
-          status
+          status,
         });
         res.status(200).json({
           data: absensi,
@@ -32,10 +32,9 @@ router.post("/checkin", async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({
-      error: "data invalid"
+      error: "data invalid",
     });
   }
-
 });
 
 router.post("/checkout", async (req, res) => {
@@ -45,10 +44,10 @@ router.post("/checkout", async (req, res) => {
     const check = await dateCheck(nip, status);
 
     if (check.absensiData === null || check.statusCurrent === "out") {
-      if ((check.currentDate !== check.newDate)) {
+      if (check.currentDate !== check.newDate) {
         const absensi = await AbsensiModel.create({
           users_nip: nip,
-          status
+          status,
         });
         res.status(200).json({
           data: absensi,
@@ -58,7 +57,7 @@ router.post("/checkout", async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({
-      error: "data invalid"
+      error: "data invalid",
     });
   }
 });

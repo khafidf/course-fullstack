@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   const users = await UsersModel.findAll();
   res.status(200).json({
     registered: users,
-    metadata: "endpoint user"
+    metadata: "endpoint user",
   });
 });
 
@@ -26,11 +26,11 @@ router.post("/", async (req, res) => {
     });
     res.status(200).json({
       registered: users,
-      metadata: "register berhasil"
+      metadata: "register berhasil",
     });
   } catch (error) {
     res.status(400).json({
-      error: "data invalid"
+      error: "data invalid",
     });
   }
 });
@@ -58,7 +58,7 @@ router.put("/", async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({
-      error: "data invalid"
+      error: "data invalid",
     });
   }
 });
@@ -72,12 +72,12 @@ router.post("/login", async (req, res) => {
     if (check.compare === true) {
       res.status(200).json({
         users: check.userData,
-        metadata: "login berhasil"
+        metadata: "login berhasil",
       });
     }
   } catch (error) {
     res.status(400).json({
-      error: "data invalid"
+      error: "data invalid",
     });
   }
 });

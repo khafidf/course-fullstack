@@ -21,8 +21,8 @@ const Edit = () => {
       url: "http://localhost:3001/users",
       data: requestingData,
     }).then(() => {
-      alert("Password berhasil diubah, silahkan login ulang!")
-      logout("/login")
+      alert("Password berhasil diubah, silahkan login ulang!");
+      logout("/login");
     });
   };
 
@@ -40,17 +40,26 @@ const Edit = () => {
       </Form.Group>
       <Form.Group className="mb-2">
         <Form.Label>Password Baru</Form.Label>
-        <Form.Control onChange={(event) => setNewPassword(event.target.value)} required />
+        <Form.Control
+          onChange={(event) => setNewPassword(event.target.value)}
+          required
+        />
       </Form.Group>
       <Form.Group className="mb-2">
         <Form.Label>Password Lama</Form.Label>
-        <Form.Control onChange={(event) => setPassword(event.target.value)} required />
+        <Form.Control
+          onChange={(event) => setPassword(event.target.value)}
+          required
+        />
       </Form.Group>
       <Form.Text className="text-muted">
         Silahkan masukkan password lama anda. Anda diharuskan melakukana login
         ulang setelah mengubah password
       </Form.Text>
-      <Button className="btn-lg px-5 w-100 mt-2" onClick={() => updateProfile()}>
+      <Button
+        className="btn-lg px-5 w-100 mt-2"
+        onClick={() => updateProfile()}
+      >
         Update Profile
       </Button>
     </Form>
