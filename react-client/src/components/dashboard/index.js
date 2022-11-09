@@ -22,11 +22,12 @@ const Dashboard = ({ title }) => {
   const absen = (params) => {
     const requestingData = {
       nip: localStorage.getItem("nip"),
+      status: params
     };
 
     axios({
       method: "POST",
-      url: `http://localhost:3001/absensi/${params}`,
+      url: `http://localhost:3001/absensi/check${params}`,
       data: requestingData
     }).then(() => {
       setAbsenNotif(!absenNotif)
@@ -47,7 +48,7 @@ const Dashboard = ({ title }) => {
                 <Badge
                   pill
                   bg="primary"
-                  onClick={() => absen("checkin")}
+                  onClick={() => absen("in")}
                 >
                   Checkin
                 </Badge>
@@ -56,7 +57,7 @@ const Dashboard = ({ title }) => {
                 <Badge
                   pill
                   bg="danger"
-                  onClick={() => absen("checkout")}
+                  onClick={() => absen("out")}
                 >
                   Checkout
                 </Badge>
