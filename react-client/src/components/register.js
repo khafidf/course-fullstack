@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Navigation from "./dashboard/navbar";
+import Footer from "./home/footer";
 
 const Register = () => {
   const [NIP, setNIP] = useState("");
@@ -102,7 +103,7 @@ const Register = () => {
                     </button>
                   </div>
                   <div>
-                    <p className="mb-0">
+                    <p className="mt-4 mb-0">
                       Have an account?{" "}
                       <a
                         href="/login"
@@ -118,6 +119,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

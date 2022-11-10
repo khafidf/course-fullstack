@@ -11,7 +11,7 @@ const Navigation = () => {
 
   const name = localStorage.getItem("nama");
   return (
-    <Navbar className="py-0">
+    <Navbar id="home" className="py-0">
       {window.location.pathname == "/register" ||
       window.location.pathname == "/login" ? (
         <Container className="py-2">
@@ -30,7 +30,7 @@ const Navigation = () => {
                 style: {
                   verticalAlign: "middle",
                   marginBottom: ".2em",
-                  marginRight: ".5em"
+                  marginRight: ".5em",
                 },
               }}
             >
@@ -60,7 +60,7 @@ const Navigation = () => {
             <span className="text-primary">D</span>'Attendance
           </Navbar.Brand>
           <Nav>
-            <Nav.Link href="/login" className="fs-6 nav-hover">
+            <Nav.Link href="/login" className="fs-6 nav-hover mx-2">
               Login
             </Nav.Link>
             <Nav.Link href="/register" className="fs-6 nav-hover">

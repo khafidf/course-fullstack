@@ -19,11 +19,11 @@ const Note = () => {
             {<GiBurningDot />}{" "}
             <em>
               If you register with "admin" name, then you will get different
-              features
+              features.
             </em>
           </h5>
           <h5>
-            {<GiBurningDot />} <em>Express-api running on port 3001</em>
+            {<GiBurningDot />} <em>Express-api running on port 3001.</em>
           </h5>
         </IconContext.Provider>
       </div>
