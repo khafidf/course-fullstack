@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Container, Badge } from "react-bootstrap";
 import axios from "axios";
 import Navigation from "./navbar";
-import Footer from "../home/footer";
 
 const Dashboard = ({ title }) => {
   const [absensiList, setAbsensiList] = useState([]);
@@ -104,7 +103,6 @@ const Dashboard = ({ title }) => {
           </div>
         </main>
       </Container>
-      <Footer />
     </>
   );
 };

@@ -13,7 +13,7 @@ const Navigation = () => {
   return (
     <Navbar id="home" className="py-0">
       {window.location.pathname == "/register" ||
-      window.location.pathname == "/login" ? (
+        window.location.pathname == "/login" ? (
         <Container className="py-2">
           <Navbar.Brand href="/" className="fw-bold fs-4">
             <span className="text-primary">D</span>'Attendance
@@ -34,13 +34,15 @@ const Navigation = () => {
                 },
               }}
             >
-              <Dropdown.Toggle variant="outline-primary" id="dropdown-basic">
+              <Dropdown.Toggle
+                variant="outline-primary"
+                id="dropdown-basic">
                 {<FaUserCircle />}
                 {name.charAt(0).toUpperCase() + name.slice(1)}
               </Dropdown.Toggle>
             </IconContext.Provider>
 
-            <Dropdown.Menu>
+            <Dropdown.Menu align="end">
               <Dropdown.Item onClick={() => setModalShow(true)}>
                 Edit Profile
               </Dropdown.Item>
